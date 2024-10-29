@@ -933,19 +933,47 @@ select nombre,apellido1,email from empleado where codigo_jefe=7;
 -- empleados que no son representantes de ventas
 select * from empleado where not puesto="Representante Ventas";
 
+
 -- clientes españoles
 select * from cliente where pais= "Spain";
 
 -- estado de pedidos
-select estado from pedido;
+select distinct estado from pedido;
 
 -- código de clientes que realizaron un pago en 2008;
-select codigo_cliente from pago where fecha_pago=2008;
+select distinct codigo_cliente from pago where fecha_pago >="2008-01-01" and fecha_pago <="2008-12-31";
 
--- clientes madrid
-select *from cliente;
-select * from empleado where codigo_empleado=11 or codigo_empleado=30 ;
-select codigo_cliente,ciudad from cliente where ciudad="madrid" ;
+-- pedidos que no se han entregado a tiempo
+select codigo_pedido,codigo_cliente,fecha_esperada,fecha_entrega from pedido where estado="pendiente";
 
-select nombre from cliente where codigo_cliente in (select nombre,apellido1 from empleado where puesto="Representante Ventas")
+-- fecha de pedido entregada dos dias antes de la fecha esperada
+select codigo_pedido,codigo_cliente, fecha_esperada, fecha_entrega from pedido where fecha_esperada - fecha_entrega>=2 and estado="Entregado";
 
+-- pedios en 2009 con year
+select * from pedido where year(fecha_pedido)="2009";
+
+-- pedidos mes de enero
+select * from pedido where month(fecha_pedido)="01";
+
+-- pagos 2008 mediante paypal en 2008, ordenar de mayor a menor
+select * from pago where year(fecha_pago)="2008" and forma_pago="paypal" order by total desc;
+
+-- formas de pago sin repetir
+select distinct forma_pago from pago;
+
+-- Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
+select * from producto where gama ="Ornamentales" and cantidad_en_stock="100" order by precio_venta desc;
+
+-- clientes de madird
+ select * from cliente  where ciudad="madrid" and codigo_empleado in (11, 30);
+ 
+-- empleados con el número del código jefe tenga 7
+ select nombre,apellido1, apellido2,email from empleado where codigo_jefe= 7;
+ 
+ 
+
+ 
+
+
+
+-- 
