@@ -37,4 +37,18 @@ select * from departamento;
 -- El resultado estará ordenado alfabéticamente de menor a mayor por el nombre del departamento, apellidos y el nombre
 select  departamento.nombre,profesor.apellido1,profesor.apellido2,profesor.nombre from profesor left join departamento on profesor.id_departamento=departamento.id order by 1,2,3,4 asc;
 
--- 
+-- Devuelve un listado con los profesores que no están asociados a un departamento.
+select profesor.id_departamento from profesor where id_departamento is null;
+
+-- Devuelve un listado con los profesores que no imparten ninguna asignatura.
+select distinct profesor.nombre,asignatura.id_profesor from asignatura inner join profesor where id_profesor is null;
+-- Devuelve un listado con las asignaturas que no tienen un profesor asignado.
+
+-- Devuelve un listado con todos los departamentos que tienen alguna asignatura que no se haya impartido en ningún curso escolar.
+-- El resultado debe mostrar el nombre del departamento y el nombre de la asignatura que no se haya impartido nunca.
+
+select distinct departamento.nombre , asignatura.nombre from departamento 
+inner join profesor on departamento.id=profesor.id_departamento inner join asignatura on asignatura.id_profesor=profesor.id 
+inner join alumno_se_matricula_asignatura 
+inner join curso_escolar on alumno_se_matricula_asignatura.id_curso_escolar=curso_escolar.id;
+
