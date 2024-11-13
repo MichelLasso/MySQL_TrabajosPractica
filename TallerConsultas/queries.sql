@@ -214,7 +214,7 @@ select empleado.nombre,empleado.apellido1,departamento.nombre,departamento.presu
 left join departamento on empleado.id_departamento = departamento.id
 union 
 select empleado.nombre,empleado.apellido1,departamento.nombre,departamento.presupuesto,departamento.gastos from empleado 
-right join departamento on empleado.id_departamento = departamento.id; -- falta organizar el departamento por el nombre
+right join departamento on empleado.id_departamento = departamento.id order by 3; 
 
 -- 5 Devuelve un listado con los empleados que no tienen ningún departamento
 -- asociado y los departamentos que no tienen ningún empleado asociado.
@@ -223,7 +223,7 @@ select empleado.nombre,empleado.apellido1,departamento.nombre,departamento.presu
 left join departamento on empleado.id_departamento = departamento.id where empleado.id_departamento is null
 union 
 select empleado.nombre,empleado.apellido1,departamento.nombre,departamento.presupuesto,departamento.gastos from empleado 
-right join departamento on empleado.id_departamento = departamento.id where empleado.id_departamento is null; -- falta organizar el departamento por el nombre
+right join departamento on empleado.id_departamento = departamento.id where empleado.id_departamento is null order by 3,1; 
 
 -- CONSULTAS RESUMEN
 -- 1 Calcula la suma del presupuesto de todos los departamentos.
