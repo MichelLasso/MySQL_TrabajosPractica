@@ -1,3 +1,4 @@
+use empresa;
 -- 1. Lista el primer apellido de todos los empleados.
 select empleado.apellido1 from empleado;
 
