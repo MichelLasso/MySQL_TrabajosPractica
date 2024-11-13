@@ -263,8 +263,7 @@ select departamento.nombre, count(empleado.id) as num_empleados
 from departamento 
 left join empleado on departamento.id=empleado.id_departamento
 group by departamento.nombre
-having count(empleado.id)>2
-;
+having count(empleado.id)>2;
 
 -- 11 Calcula el número de empleados que trabajan en cada uno de los departamentos. El resultado de esta consulta también tiene que incluir
 -- aquellos departamentos que no tienen ningún empleado asociado.
