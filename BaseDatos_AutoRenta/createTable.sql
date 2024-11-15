@@ -1,6 +1,6 @@
 create database autoRenta;
 use autoRenta;
--- 1
+
 create table sucursal(
 	idSucursal int primary key,
     pais varchar(50) not null,
@@ -24,19 +24,6 @@ create table cliente(
     correo_electronico varchar(50) not null
 );
 -- 3
-create table vehiculo(
-	idVehiculo int primary key,
-    tipo varchar(30) not null,
-    placa varchar(10) not null,
-    referencia varchar(30) not null,
-    modelo varchar (30) not null,
-    puertas int not null,
-    capacidad int not null,
-    sunroof varchar (30) not null,
-    motor varchar (30) not null,
-    color varchar (20) not null
-);
--- 4
 create table lugar_mantenimiento(
 	idLugar_mantenimiento int primary key,
     nombre varchar(30) not null,
@@ -49,6 +36,21 @@ create table lugar_mantenimiento(
     pais varchar(50) not null,
     ciudad varchar(50) not null,
     direccion varchar(40) not null
+);
+-- 4
+create table vehiculo(
+	idVehiculo int primary key,
+    tipo varchar(30) not null,
+    placa varchar(10) not null,
+    referencia varchar(30) not null,
+    modelo varchar (30) not null,
+    puertas int not null,
+    capacidad int not null,
+    sunroof varchar (60) not null,
+    motor varchar (30) not null,
+    color varchar (20) not null,
+	idSucursal int not null,
+    foreign key (idSucursal) references sucursal(idSucursal)
 );
 -- 5
 create table empleado(
@@ -64,22 +66,14 @@ create table empleado(
     foreign key (idSucursal) references sucursal(idSucursal)
 );
 -- 6
-create table sucursal_vehiculo(
-	idSucursal_vehiculo int primary key,
-    idSucursal int not null,
-    foreign key (idSucursal) references sucursal(idSucursal),
-    idVehiculo int not null,
-    foreign key (idVehiculo) references vehiculo(idVehiculo)
-);
--- 7
 create table sucursal_cliente(
 	idSucursal_cliente int primary key,
-    idSucursal int not null,
-    foreign key(idSucursal) references sucursal(idSucursal),
+	idSucursal int not null,
+    foreign key (idSucursal) references sucursal(idSucursal),
     idCliente int not null,
     foreign key(idCliente) references cliente(idCliente)
 );
--- 8
+-- 7
 create table alquiler(
 	idAlquiler int primary key,
     sucursal_alquiler int not null,
@@ -90,8 +84,10 @@ create table alquiler(
     foreign key (idEmpleado) references empleado(idEmpleado),
     idCliente int not null,
     foreign key (idCliente) references cliente(idCliente),
+    idVehiculo int not null,
+    foreign key(idVehiculo) references vehiculo(idVehiculo),
     fecha_salida varchar(30) not null,
-    fecha_llegada varchar(30) not null,
+    fecha_llegada varchar(30),
     fecha_esperada varchar(30) not null,
     porcentaje_descuento int,
     valor_cotizado int not null,
@@ -99,7 +95,7 @@ create table alquiler(
     valor_semanal int not null,
     valor_dia int not null
 );
--- 9
+-- 8
 create table mantenimiento(
 	idMantenimeinto int primary key,
     idVehiculo int not null,
