@@ -12,6 +12,8 @@ Dia2| Contiene un archivo .sql de una creación de tablas, inserciones y consult
 |Dia4|En esta carpeta encontramos un documento .docx En este documento podrás encontrar una guía detallada del proceso de diseño de una base de datos para una librería. Su objetivo principal es gestionar el inventario, ventas y clientes.|
 |TallerConsultas|Contiene dos archivos .sql. Un archivo tiene la creación de tablas con inserciones y el otro contiene las consultas.|
 |ejercicio1|Es un archivo .sql que contiene la creación de tablas de una libreria.|
+|BaseDatos_AutoRenta|Contiene cinco archivos .sql y un archivo docs con la documentación del trabajo.|
+|QuizSorpresa|Contiene un solo archivo el cual posee la creación de tablas, datos y sus respectivas consultas.|
 ## Instalación
 Si quieres utilizar o revisar algun código que te interesó, cumple con los siguientes pasos:
 1. Copia el link del repositorio dando click en el boton verde que dice <>code.
